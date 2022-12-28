@@ -1,0 +1,20 @@
+# docker-compose.yml
+services:
+  app:
+    build:
+      context: .
+      target: ${NODE_ENV}
+      args:
+        - NODE_ENV=${NODE_ENV}
+    restart: always    
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - SERVER_PORT=${SERVER_PORT}
+    ports:
+      - "3000:${SERVER_PORT}"
+      - "9229:9229"
+    volumes:
+      - .:/node/app
+      - /node/app/node_modules
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t

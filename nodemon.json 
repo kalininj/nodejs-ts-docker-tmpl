@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "watch": [
+    "src"
+  ],
+  "ext": "ts",
+  "exec": "ts-node src/index.dev.ts",
+  "env": {
+    "NODE_ENV": "development",
+    "SHOW_DOCS": true
+  }
+}
