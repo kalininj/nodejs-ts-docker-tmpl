@@ -1,8 +1,8 @@
 import express from "express";
 var router = express.Router();
 
-import TestRoutes from "./products";
+import ProductsRoutes from "./products";
 
-router.use('/', TestRoutes);
+router.use('/', ProductsRoutes);
 
 export default router;

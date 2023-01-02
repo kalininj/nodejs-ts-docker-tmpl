@@ -29,7 +29,7 @@ RUN \
 
 WORKDIR /node/app
 
-CMD ["npx", "nodemon", "--config", "nodemon.json", "src/index.dev.ts"]
+CMD ["npx", "nodemon", "--exec", "node", "--inspect=0.0.0.0:9229", "--require", "ts-node/register", "src/server.ts"]
 
 # Test stage
 # ---------------------------------------
@@ -48,7 +48,6 @@ COPY --chown=node:node . .
 
 # RUN \
 #   npm run test && \
-#   npm run lint
 
 # Production stage
 # ---------------------------------------

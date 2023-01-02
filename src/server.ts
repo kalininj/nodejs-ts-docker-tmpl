@@ -1,18 +1,15 @@
-#!/usr/bin/env node
+import * as dotenv from 'dotenv' 
+dotenv.config()
 
-require('dotenv').config({ silent: true });
-
-const http = require('http');
-const stoppable = require('stoppable');
-const { promisify } = require('util');
-const app = require('../dist/index');
+import http from 'http'
+import { promisify } from 'util'
+import app from './app'
 
 const SIGINT = 'SIGINT';
 const SIGTERM = 'SIGTERM';
-const SERVER_CLOSE_GRACE = 10000;
 const { SERVER_PORT = 3000 } = process.env;
 
-const shutdownMessages = {
+const shutdownMessages: any = {
   [SIGINT]: 'Received SIGINT, probably ctrl-c. Gracefully shutting down the server.',
   [SIGTERM]: 'Received SIGTERM, probably docker stop. Gracefully shutting down the server.',
 };
@@ -20,11 +17,11 @@ const shutdownMessages = {
 function start() {
   app.set('port', SERVER_PORT);
 
-  const server = stoppable(http.createServer(app), SERVER_CLOSE_GRACE);
-  const serverClose = promisify(server.stop.bind(server));
+  const server = http.createServer(app);
+  const serverClose = promisify(server.close.bind(server));
 
   // Handle a shutdown event
-  async function shutdown(signal) {
+  async function shutdown(signal: any) {
     console.log(shutdownMessages[signal]);
 
     try {
@@ -37,7 +34,7 @@ function start() {
     }
   }
 
-  function onError(error) {
+  function onError(error: any) {
     switch (error.code) {
       case 'EACCES':
         console.error(`Port ${SERVER_PORT} requires elevated privileges`);
