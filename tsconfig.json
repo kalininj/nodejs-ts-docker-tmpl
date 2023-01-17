@@ -4,11 +4,12 @@
     "module": "commonjs",
     "sourceMap": true,
     "removeComments": true,
-    "rootDir": "./src",
+    "rootDir": "./app",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["./app/types"]
   }
 }

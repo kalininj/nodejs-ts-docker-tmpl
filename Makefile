@@ -8,7 +8,7 @@ define release
   docker build --target=production -t $$TAG .
 endef
 
-.PHONY: build-dev build-dev-no-cache build-test start stop shell build dev-start-log
+.PHONY: build-dev build-dev-no-cache test start stop shell build dev-start-log
 
 build-dev: ##@dev Build the application for dev
 	docker compose build
@@ -16,7 +16,7 @@ build-dev: ##@dev Build the application for dev
 build-dev-no-cache: ##@dev Build the application for dev without using cache
 	docker compose build --no-cache
 
-build-test: ##@dev Build the application to run tests
+test: ##@dev Build the application to run tests
 	docker build \
 		--target test \
 		-t app-test .
@@ -31,13 +31,13 @@ logs: ##@dev Stop the development environment
 	docker compose logs -f
 
 shell: ##@dev Go into the running container (the app name should match what's in docker-compose.yml)
-	docker compose exec app /bin/ash '-l'
+	docker compose exec app /bin/bash '-l'
 
 dev-start-log: 
 	$(MAKE) stop
 	$(MAKE) build-dev 
 	$(MAKE) start
-	$(MAKE) logs	
+	$(MAKE) logs
 
 build: ##
 	$(call release)

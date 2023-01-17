@@ -1,9 +1,9 @@
 // import axios from "axios"
-import { Product } from "../types"
+import { Product } from "./types"
 
 const products: Product[] = [
-  { name: "a" }, 
-  { name: "b" }
+  { id: 1, name: "a" }, 
+  { id: 2, name: "b", description: 'dfg' }
 ]
 
 export async function fetchItems(): Promise<Product[]> {

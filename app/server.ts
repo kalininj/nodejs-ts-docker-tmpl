@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv' 
-dotenv.config()
-
 import http from 'http'
 import { promisify } from 'util'
 import app from './app'
