@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lock": "npm i --package-lock-only",
-    "test": "jest --verbose --config ./_jest.config.js",
+    "test": "jest --verbose",
     "gen-api-types": "npx openapi-typescript ./app/api-doc.yml --output ./app/types/api-types.ts" 
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 import request from "supertest"
 
-import app from "../app/app"
+import app from "../../app"
 
 describe('e2e', () => {
   it('should load 1 product', async () => {
