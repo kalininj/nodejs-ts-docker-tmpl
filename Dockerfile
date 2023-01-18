@@ -65,6 +65,10 @@ RUN \
   npm ci --no-optional
 
 COPY --chown=node:node ./app ./app
+COPY --chown=node:node ./tsconfig.json .
+
+RUN \
+  npm run build
 
 # ---------------------------------------
 FROM gcr.io/distroless/nodejs:18 as production

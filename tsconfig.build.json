@@ -1,0 +1,14 @@
+{
+  "include": [
+      "app/server.ts"
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "sourceMap": false,
+    "removeComments": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  }  
+}
