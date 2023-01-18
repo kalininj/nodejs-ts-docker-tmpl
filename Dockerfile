@@ -38,15 +38,16 @@ FROM base AS test
 
 ENV NODE_ENV=development
 ENV SERVER_PORT=3000
-
+ENV PATH /node/node_modules/.bin:$PATH
 COPY --chown=node:node package*.json ./
 
 RUN \
-  npm ci --no-optional && \
-  npm cache clean --force
+  npm ci
 
-COPY --chown=node:node ./__tests__ ./__tests__
 COPY --chown=node:node ./app ./app
+COPY --chown=node:node ./jest.config.js .
+COPY --chown=node:node ./tsconfig.json .
+COPY --chown=node:node ./tsconfig.spec.json .
 
 RUN \
   npm run test
@@ -61,8 +62,7 @@ ENV SERVER_PORT=3000
 COPY --chown=node:node package*.json ./
 
 RUN \
-  npm ci --no-optional && \
-  npm cache clean --force
+  npm ci --no-optional
 
 COPY --chown=node:node ./app ./app
 
