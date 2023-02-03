@@ -30,7 +30,7 @@ RUN \
 
 # WORKDIR /node/app
 
-CMD ["npx", "nodemon", "--exec", "node", "--inspect=0.0.0.0:9229", "--require", "ts-node/register", "app/server.ts"]
+CMD ["ts-node-dev", "--inspect=0.0.0.0:9229", "app/server.ts"]
 
 # Test stage
 # ---------------------------------------
