@@ -21,7 +21,6 @@ RUN echo 'alias ll="ls -als"' >> ~/.profile
 ENV NODE_ENV=development
 ENV SHOW_DOCS=true
 ENV SERVER_PORT=3000
-ENV PATH /node/node_modules/.bin:$PATH
 EXPOSE $SERVER_PORT 9229
 
 COPY --chown=node:node package*.json ./
@@ -30,7 +29,7 @@ RUN \
 
 # WORKDIR /node/app
 
-CMD ["ts-node-dev", "--inspect=0.0.0.0:9229", "app/server.ts"]
+CMD ["npx", "ts-node-dev", "--inspect=0.0.0.0:9229", "app/server.ts"]
 
 # Test stage
 # ---------------------------------------
@@ -38,7 +37,6 @@ FROM base AS test
 
 ENV NODE_ENV=development
 ENV SERVER_PORT=3000
-ENV PATH /node/node_modules/.bin:$PATH
 COPY --chown=node:node package*.json ./
 
 RUN \

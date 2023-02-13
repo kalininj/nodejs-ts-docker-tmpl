@@ -4,7 +4,9 @@
   "author": "Juri K",
   "license": "MIT",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "build": "npx --package typescript tsc --project tsconfig.build.json",
+    "gen-api-types": "npx openapi-typescript ./app/api-doc.yml --output ./app/types/api-types.ts"
   },
   "dependencies": {
     "express": "4.18.2",
